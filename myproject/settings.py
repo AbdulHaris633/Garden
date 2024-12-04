@@ -9,9 +9,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback_key")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", "0.0.0.0", "54.82.253.10"]
 
-import os
 OPENAI_API_KEY = None
 
 
