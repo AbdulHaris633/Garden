@@ -1,7 +1,8 @@
 
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 import uuid
+
+from users.models import * 
 
 
 class Category(models.Model):
@@ -14,13 +15,14 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    
 
 class Region(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True)
-
+ 
     def __str__(self):
         return self.name  
 
@@ -50,18 +52,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-
-class User(AbstractUser):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    description = models.TextField(max_length=500)  
-    # country = models.CharField(max_length=100)
-    name_privacy = models.BooleanField(default=True) 
-    country_privacy = models.BooleanField(default=True)
-    # region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='Users', null=True)
-    
-    def __str__(self):
-        return self.username
-
 
 class Garden(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -153,5 +143,5 @@ class Notification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    def __str__(self): 
         return self.title

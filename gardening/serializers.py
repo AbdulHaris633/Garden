@@ -1,39 +1,12 @@
 from rest_framework import serializers
-from .models import *
-
+from .models import * 
 
 
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = '__all__' 
+        fields = '__all__'  
 
-
-        
-class UserRegisterSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField(write_only=True)
-    region = serializers.UUIDField(write_only=True)
-
-    class Meta:
-        model = User
-        fields = '__all__'
-        extra_kwargs = {'password': {'write_only': True}}
-
-    
-
-class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True)
-    password = serializers.CharField(required=True, write_only=True)
-
-    def validate_username(self, value):
-        if not value:
-            raise serializers.ValidationError("Username is required.")
-        return value
-
-    def validate_password(self, value):
-        if not value:
-            raise serializers.ValidationError("Password is required.")
-        return value
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -69,9 +42,6 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportAProblem
@@ -98,19 +68,6 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ['id', 'description', 'image', 'article_link', 'user', 'created_at']
         read_only_fields = ['user', 'created_at']
 
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            'username',
-            'last_name',
-            'description', 
-            'country', 
-            'name_privacy', 
-            'country_privacy', 
-            'region'
-        )
 
 
 class GardenCreateSerializer(serializers.ModelSerializer):

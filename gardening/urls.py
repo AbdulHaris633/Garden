@@ -1,12 +1,10 @@
 from django.urls import path
-from .views import *
+from gardening.views import * 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView  
 
-urlpatterns = [
-    path('register/', UserRegisterView.as_view(), name='register'),
+urlpatterns = [  
     # path('user/edit/', UserEditView.as_view(), name='user-edit'),
     # path('user/delete/', UserDeleteView.as_view(), name='user-delete'),
-    path('login/', UserLoginView.as_view(), name='login'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('create-region/', RegionCreateView.as_view(), name='create-region'),
