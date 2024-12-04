@@ -23,12 +23,44 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gardening',
-    'users',
-    'rest_framework',
-    'rest_framework_jwt',
-    'rest_framework_simplejwt',  
+    # 'gardening',
+    # 'users',
+    # 'rest_framework',
+    # 'dj_rest_auth',
+    # 'rest_framework_jwt',
+    # 'rest_framework_simplejwt',  
+    'rest_framework',             # Django REST Framework
+    'rest_framework.authtoken',  # Token-based authentication
+    'dj_rest_auth',              # Authentication endpoints
+    'allauth',                   # Django Allauth for user management
+    'allauth.account',           # Account management (registration, login, etc.)
+    'allauth.socialaccount',     # Social account support (optional)
+    'dj_rest_auth.registration', # Registration endpoints (if needed)
+    
+    'users'
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SITE_ID = 1
+
+AUTH_USER_MODEL = 'users.User'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -38,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -75,7 +108,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Gardening',     # Replace with your database name
+        'NAME': 'gardening',     # Replace with your database name
         'USER': 'postgres',           # Replace with your PostgreSQL username
         'PASSWORD': 'haris',       # Replace with your PostgreSQL password
         'HOST': '127.0.0.1',               # Set to 'localhost' for local connection
@@ -84,22 +117,21 @@ DATABASES = {
 } 
 
 
-# # Email settings
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_email@gmail.com'  # Your email address
-# EMAIL_HOST_PASSWORD = 'your_email_password'  # Your email password
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# REPORT_EMAIL = 'report_recipient@example.com'  # The email address to send reports to
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+REPORT_EMAIL = 'admin@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@example.com'
+EMAIL_HOST_PASSWORD = 'your_password'
 
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -148,8 +180,11 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,                  
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+# }
