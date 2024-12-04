@@ -57,7 +57,7 @@ class User(AbstractUser):
     # country = models.CharField(max_length=100)
     name_privacy = models.BooleanField(default=True) 
     country_privacy = models.BooleanField(default=True)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='Users', null=True)
+    # region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='Users', null=True)
     
     def __str__(self):
         return self.username
