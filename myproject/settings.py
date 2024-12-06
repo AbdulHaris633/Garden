@@ -22,13 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # 'gardening',
-    # 'users',
-    # 'rest_framework',
+    'django.contrib.staticfiles', 
     # 'dj_rest_auth',
-    # 'rest_framework_jwt',
-    # 'rest_framework_simplejwt',  
+    'rest_framework_simplejwt',  
     'rest_framework',             # Django REST Framework
     'rest_framework.authtoken',  # Token-based authentication
     'dj_rest_auth',              # Authentication endpoints
@@ -36,8 +32,9 @@ INSTALLED_APPS = [
     'allauth.account',           # Account management (registration, login, etc.)
     'allauth.socialaccount',     # Social account support (optional)
     'dj_rest_auth.registration', # Registration endpoints (if needed)
-    
-    'users'
+    'users',
+    'lawn', 
+    'plant'     
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -53,12 +50,18 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-}
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+} 
+
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-}
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+} 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -73,7 +76,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware'
 ]
 
-ROOT_URLCONF = 'myproject.urls'
+ROOT_URLCONF = 'myproject.urls' 
 
 TEMPLATES = [
     {
@@ -180,11 +183,3 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,                  
 }
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.TokenAuthentication',
-#     ],
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ],
-# }
