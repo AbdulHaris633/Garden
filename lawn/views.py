@@ -54,17 +54,21 @@ class AddProductToUserLawn(APIView):
                 
                 
             
-class DisplayProductToUserLawn(APIView):
+class DisplayProductToUserLawn(APIView): 
+    permission_classes = [IsAuthenticated] 
     serializer_class = DisplayUserLawnProductSerialzier
     
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
          
-        if serializer.is_valid():
-            request_userlawn = serializer.validated_data.get("lawn_id")
-            lawn_products = LawnProduct.objects.filter(lawn__id=request_userlawn)
+        if serializer.is_valid(): 
+            username_=request.user 
+            print(username_)  
+            lawn_id = UserLawn.objects.get(user__username=username_).lawn.id
+            # request_userlawn = serializer.validated_data.get("lawn_id")
+            lawn_products = LawnProduct.objects.filter(lawn__id=lawn_id) 
             s = LawnProductSerializer(lawn_products, many=True)
             
-            return Response(s.data)
+            return Response(s.data)  
         else:
              return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  

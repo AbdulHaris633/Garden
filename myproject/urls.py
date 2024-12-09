@@ -15,6 +15,7 @@ urlpatterns = [
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     path('lawn/', include('lawn.urls')),
     path('plant/', include('plant.urls')),   
-    path('users/', include('users.urls'))     
+    path('users/', include('users.urls')),
+    path('posts/', include('posts.urls'))        
     
 ]   

@@ -53,5 +53,5 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
       permission_classes = [IsAuthenticated]
       serializer_class = ProductSerializer
       queryset = Product.objects.all()
-      lookup_field = "id"        
+      lookup_field = "id"          
 

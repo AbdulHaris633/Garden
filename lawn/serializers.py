@@ -28,4 +28,4 @@ class CreateUserLawnProductSerialzier(serializers.Serializer):
     
 
 class DisplayUserLawnProductSerialzier(serializers.Serializer):
-    lawn_id = serializers.CharField(max_length=50) 
+    lawn_id = serializers.CharField(max_length=50, required=False)  

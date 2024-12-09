@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration', # Registration endpoints (if needed)
     'users',
     'lawn', 
-    'plant'     
+    'plant',
+    'posts'          
 ]
 
 AUTHENTICATION_BACKENDS = (

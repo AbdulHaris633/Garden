@@ -10,4 +10,4 @@ class RegionSerializer(serializers.ModelSerializer):
         
         
 class UserRegionProductSerialzier(serializers.Serializer):
-    username = serializers.CharField(max_length=30)
+    username = serializers.CharField(max_length=30, required=False)
