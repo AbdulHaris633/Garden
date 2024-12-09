@@ -9,19 +9,23 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('lawn', '0001_initial'),
-        ('plant', '0001_initial'),
+        ("lawn", "0001_initial"),
+        ("plant", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='lawnproduct',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='plant.product'),
+            model_name="lawnproduct",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="plant.product"
+            ),
         ),
         migrations.AddField(
-            model_name='userlawn',
-            name='lawn',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='lawn.lawn'),
+            model_name="userlawn",
+            name="lawn",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="lawn.lawn"
+            ),
         ),
     ]
