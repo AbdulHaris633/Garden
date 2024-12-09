@@ -5,7 +5,7 @@ import uuid
 
 class User(AbstractUser):
     phone = models.CharField(max_length=15, blank=True)
-    country = models.CharField(max_length=20)
+    country = models.CharField(max_length=20, null=True, blank=True)
     
 class Region(models.Model): 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
