@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'users',
     'lawn', 
     'plant',
-    'posts'          
+    'posts',
+    'drf_yasg'             
 ]
 
 AUTHENTICATION_BACKENDS = (

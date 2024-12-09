@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import *
 
-
 class PostSerializer(serializers.ModelSerializer):
-    class Meta:
+    image = serializers.ImageField(required=False)
+    user = serializers.CharField(required=False)
+    
+    class Meta:   
          model = Post
-         fields = "__all__"            
-        
+         fields = "__all__" 

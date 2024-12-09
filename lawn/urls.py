@@ -7,4 +7,4 @@ urlpatterns = [
     path("list/<uuid:id>/", LawnDetailAPIView.as_view()),
     path("addproductinuser/",AddProductToUserLawn.as_view()),
     path("displayproductinuser/",DisplayProductToUserLawn.as_view())     
-]    
+]       
