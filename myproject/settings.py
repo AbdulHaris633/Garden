@@ -19,11 +19,11 @@ OPENAI_API_KEY = None
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 
-    # 'dj_rest_auth',
+    'django.contrib.staticfiles',
     'rest_framework_simplejwt',  
     'rest_framework',             # Django REST Framework
     'rest_framework.authtoken',  # Token-based authentication
@@ -31,9 +31,9 @@ INSTALLED_APPS = [
     'allauth',                   # Django Allauth for user management
     'allauth.account',           # Account management (registration, login, etc.)
     'allauth.socialaccount',     # Social account support (optional)
-    'dj_rest_auth.registration', # Registration endpoints (if needed)
+    'dj_rest_auth.registration',# Registration endpoints (if needed)
     'users',
-    'lawn', 
+    'lawn',   
     'plant',
     'posts',
     'drf_yasg'             
@@ -102,34 +102,38 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# } 
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gardening',     # Replace with your database name
-        'USER': 'postgres',           # Replace with your PostgreSQL username
-        'PASSWORD': 'haris',       # Replace with your PostgreSQL password
-        'HOST': '127.0.0.1',               # Set to 'localhost' for local connection
-        'PORT': '5432',                         # Default PostgreSQL port 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 } 
 
 
-DEFAULT_FROM_EMAIL = 'noreply@example.com'
-REPORT_EMAIL = 'admin@example.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'gardening',     # Replace with your database name
+#         'USER': 'postgres',           # Replace with your PostgreSQL username
+#         'PASSWORD': 'haris',       # Replace with your PostgreSQL password
+#         'HOST': '127.0.0.1',               # Set to 'localhost' for local connection
+#         'PORT': '5432',                         # Default PostgreSQL port 
+#     }
+# } 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 EMAIL_HOST = 'smtp.example.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your_email@example.com'
-EMAIL_HOST_PASSWORD = 'your_password'
+EMAIL_HOST_USER = 'your-email@example.com' 
+EMAIL_HOST_PASSWORD = 'your-password'
+
+# Required for building password reset links
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+DEFAULT_FROM_EMAIL = 'no-reply@example.com'
+
 
 
 
