@@ -28,12 +28,16 @@ urlpatterns = [
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/', include('dj_rest_auth.urls')),
+    path('auth/', include('django.contrib.auth.urls')), 
+    path("auth/password/change/",include('dj_rest_auth.urls')),  
+    path("auth/password/reset/",include('dj_rest_auth.urls')),  
+    path("auth/password/reset/confirm/",include('dj_rest_auth.urls')),  
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('lawn/', include('lawn.urls')),
     path('plant/', include('plant.urls')),   
-    path('users/', include('users.urls')),
+    path('users/', include('users.urls')),  
     path('posts/', include('posts.urls'))              
     
 ]   
