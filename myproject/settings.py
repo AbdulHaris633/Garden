@@ -81,7 +81,7 @@ ROOT_URLCONF = "myproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],     
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -125,10 +125,10 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "haris03045025656@gmail.com"
-EMAIL_HOST_PASSWORD = "zcvc djzv bwux zdrs" 
+EMAIL_HOST_PASSWORD = "zcvc djzv bwux zdrs"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_EMAIL_REQUIRED = True  
- 
+ACCOUNT_EMAIL_REQUIRED = True
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -168,6 +168,5 @@ SIMPLE_JWT = {
 
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer", 
-}     
- 
+    "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer",
+}

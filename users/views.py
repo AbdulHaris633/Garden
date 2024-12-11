@@ -1,4 +1,8 @@
+from dj_rest_auth.registration.views import RegisterView
+from django.conf import settings
+from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
@@ -6,19 +10,11 @@ from rest_framework.views import APIView
 
 from plant.models import Product, ProductRegion
 from plant.serializers import ProductSerializer
-from django.core.mail import send_mail
 
 from .models import *
 from .models import Region, User, UserRegion
 from .serializers import *
-from .serializers import UserRegionProductSerialzier
-from .serializers import CustomRegisterSerializer
-from dj_rest_auth.registration.views import RegisterView
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.conf import settings
-
-from dj_rest_auth.registration.views import RegisterView
+from .serializers import CustomRegisterSerializer, UserRegionProductSerialzier
 
 
 class RegionCreateAPIView(generics.ListCreateAPIView):
@@ -30,7 +26,7 @@ class RegionCreateAPIView(generics.ListCreateAPIView):
 class RegionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
     serializer_class = RegionSerializer
-    queryset = Region.objects.all() 
+    queryset = Region.objects.all()
     lookup_field = "id"
 
 
@@ -68,13 +64,12 @@ class GetProductsByUserRegion(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CustomRegisterView(RegisterView): 
-    serializer_class = CustomRegisterSerializer 
+class CustomRegisterView(RegisterView):
+    serializer_class = CustomRegisterSerializer
 
     def perform_create(self, serializer):
         user = super().perform_create(serializer)
-        email = serializer.validated_data.get("email") 
+        email = serializer.validated_data.get("email")
         user.email = email
-        user.save()   
-        return user  
-    
+        user.save()
+        return user

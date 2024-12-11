@@ -1,12 +1,11 @@
+from allauth.account import app_settings
 from allauth.account.adapter import DefaultAccountAdapter
-from django.template.loader import render_to_string
 from allauth.account.models import EmailConfirmation
 from allauth.account.utils import user_email
-from allauth.account import app_settings
 from django.conf import settings
-from django.urls import reverse
 from django.http import HttpRequest
-
+from django.template.loader import render_to_string
+from django.urls import reverse
 
 
 class CustomAccountAdapter(DefaultAccountAdapter):
@@ -26,12 +25,12 @@ class CustomAccountAdapter(DefaultAccountAdapter):
                 }
             )
         if signup:
-            email_template = "account/email/email_confirmation_signup"    
+            email_template = "account/email/email_confirmation_signup"
         else:
             email_template = "account/email/email_confirmation"
-        self.send_mail(email_template, emailconfirmation.email_address.email, ctx) 
-        
+        self.send_mail(email_template, emailconfirmation.email_address.email, ctx)
+
     def get_email_confirmation_url(self, request, emailconfirmation):
-        custom_domain = "http://54.82.253.10:8000" 
+        custom_domain = "http://54.82.253.10:8000"
         url = reverse("account_confirm_email", args=[emailconfirmation.key])
-        return f"{custom_domain}{url}"    
+        return f"{custom_domain}{url}"
