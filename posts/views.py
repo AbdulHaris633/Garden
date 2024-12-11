@@ -3,6 +3,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.core.mail import send_mail
 
 from users.models import User
 
@@ -15,7 +16,7 @@ class PostListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = UserPostSerializer
     queryset = UserPost.objects.all()
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):  
         serializer = self.get_serializer(data=request.data)
 
         if serializer.is_valid():

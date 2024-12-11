@@ -5,6 +5,8 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from users.views import CustomRegisterView
+
 schema_view = get_schema_view(
     openapi.Info(
         title="My API",
@@ -15,7 +17,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=[permissions.AllowAny],
+    permission_classes=[permissions.AllowAny], 
 )
 
 
@@ -28,7 +30,8 @@ urlpatterns = [
     path("auth/password/change/", include("dj_rest_auth.urls")),
     path("auth/password/reset/", include("dj_rest_auth.urls")),
     path("auth/password/reset/confirm/", include("dj_rest_auth.urls")),
-    path("auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("auth/registration/", CustomRegisterView.as_view(), name='custom_register'),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),  
     path(
         "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),
