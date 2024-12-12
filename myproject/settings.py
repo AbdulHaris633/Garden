@@ -2,19 +2,16 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback_key")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "54.82.253.10"]
+ALLOWED_HOSTS = ["*", "54.82.253.10", "172.31.88.122"]
 
 OPENAI_API_KEY = None
 
-
-# Application definition
 
 INSTALLED_APPS = [ 
     "django.contrib.admin",
