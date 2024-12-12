@@ -16,7 +16,7 @@ OPENAI_API_KEY = None
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ 
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.sites",
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
-SITE_ID = 1
+SITE_ID = 2 
 
 AUTH_USER_MODEL = "users.User"
 
@@ -60,7 +60,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": True,
+    "BLACKLIST_AFTER_ROTATION": True, 
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -76,14 +76,14 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-ROOT_URLCONF = "myproject.urls"
+ROOT_URLCONF = "myproject.urls"  
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [os.path.join(BASE_DIR, 'templates'),],   
         "APP_DIRS": True,
-        "OPTIONS": {
+        "OPTIONS": { 
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -123,9 +123,9 @@ DATABASES = {
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = True     
 EMAIL_HOST_USER = "haris03045025656@gmail.com"
-EMAIL_HOST_PASSWORD = "zcvc djzv bwux zdrs"
+EMAIL_HOST_PASSWORD = "zcvc djzv bwux zdrs" 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_REQUIRED = True
 

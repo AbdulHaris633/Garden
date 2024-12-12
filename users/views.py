@@ -7,6 +7,13 @@ from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from allauth.account.views import ConfirmEmailView
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from plant.models import Product, ProductRegion
 from plant.serializers import ProductSerializer
@@ -66,10 +73,37 @@ class GetProductsByUserRegion(APIView):
 
 class CustomRegisterView(RegisterView):
     serializer_class = CustomRegisterSerializer
+    
+    
+from allauth.account.views import ConfirmEmailView
 
-    def perform_create(self, serializer):
-        user = super().perform_create(serializer)
-        email = serializer.validated_data.get("email")
-        user.email = email
-        user.save()
-        return user
+class CustomConfirmEmailView(ConfirmEmailView):
+    template_name = "account/email/email_confirm.html"  
+    
+    
+    
+
+# class CustomTokenObtainPairView(TokenObtainPairView):
+#     serializer_class = CustomTokenObtainPairSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         # Ensure user is authenticated before accessing the 'verified' field
+#         if request.user.is_authenticated:
+#             user = request.user
+            
+#             # Check if the user is verified, if not return an error
+#             if not user.verified:
+#                 return Response(
+#                     {"detail": "Email not verified."},
+#                     status=status.HTTP_400_BAD_REQUEST
+#                 )
+#         else:
+#             # If the user is not authenticated (AnonymousUser), return an error
+#             return Response(
+#                 {"detail": "Authentication credentials were not provided."},
+#                 status=status.HTTP_401_UNAUTHORIZED
+#             )
+        
+#         # Call the parent class's post method to generate and return the token
+#         response = super().post(request, *args, **kwargs)
+#         return response 
