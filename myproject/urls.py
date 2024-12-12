@@ -6,7 +6,7 @@ from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from allauth.account.views import confirm_email 
 # from users.views import CustomConfirmEmailView 
-from users.views import CustomRegisterView , CustomConfirmEmailView,CustomTokenObtainPairView
+from users.views import CustomRegisterView , CustomConfirmEmailView
 from django.views.generic import TemplateView
 from django.urls import path, re_path
 from django.views.generic import TemplateView
