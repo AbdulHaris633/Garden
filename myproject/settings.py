@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "tasks"
 ]
 
+broker_url = 'redis://localhost:6379/0'
+
+
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 SITE_ID = 2 
