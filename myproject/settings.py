@@ -33,11 +33,11 @@ INSTALLED_APPS = [
     "lawn",
     "plant",
     "posts",
-    "drf_yasg",
+    "drf_yasg", 
     "tasks"
 ]
 
-broker_url = 'redis://localhost:6379/0'
+# broker_url = 'redis://localhost:6379/0'
 
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
