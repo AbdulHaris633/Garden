@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "plant",
     "posts",
     "drf_yasg",
+    "tasks"
 ]
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
